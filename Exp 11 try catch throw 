@@ -1,0 +1,66 @@
+
+#include <iostream>
+using namespace std;
+
+// Custom Exception Class
+class InvalidAgeException
+{
+public:
+    const char* what()
+    {
+        return "Invalid Age! Age must be between 0 and 120.";
+    }
+};
+
+// Person Class
+class Person
+{
+    int age;
+
+public:
+    void getAge()
+    {
+        cout << "\nEnter age: ";
+        cin >> age;
+
+        if (age < 0 || age > 120)
+            throw InvalidAgeException();
+
+        cout << "Valid Age: " << age << endl;
+    }
+};
+
+int main()
+{
+    int a, b;
+
+    // Division by zero exception
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+
+    try
+    {
+        if (b == 0)
+            throw "Division by zero is not allowed!";
+
+        cout << "Division = " << a / b << endl;
+    }
+    catch (const char* msg)
+    {
+        cout << "Exception: " << msg << endl;
+    }
+
+    // Custom age exception
+    Person p;
+
+    try
+    {
+        p.getAge();
+    }
+    catch (InvalidAgeException e)
+    {
+        cout << "Exception: " << e.what() << endl;
+    }
+
+    return 0;
+}
