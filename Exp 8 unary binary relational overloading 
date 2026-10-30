@@ -1,0 +1,71 @@
+
+#include <iostream>
+using namespace std;
+
+class Number
+{
+    int a, b;
+
+public:
+    void getData()
+    {
+        cout << "Enter two numbers: ";
+        cin >> a >> b;
+    }
+
+    // Unary operator overloading
+    void operator -()
+    {
+        a = -a;
+        b = -b;
+    }
+
+    // Binary operator overloading
+    Number operator +(Number n)
+    {
+        Number temp;
+        temp.a = a + n.a;
+        temp.b = b + n.b;
+        return temp;
+    }
+
+    // Relational operator overloading
+    int operator >(Number n)
+    {
+        return (a + b) > (n.a + n.b);
+    }
+
+    void display()
+    {
+        cout << "a = " << a << ", b = " << b << endl;
+    }
+};
+
+int main()
+{
+    Number n1, n2, n3;
+
+    cout << "Enter first object values:\n";
+    n1.getData();
+
+    cout << "Enter second object values:\n";
+    n2.getData();
+
+    // Unary operator
+    -n1;
+    cout << "\nAfter Unary Operator (-): ";
+    n1.display();
+
+    // Binary operator
+    n3 = n1 + n2;
+    cout << "\nAfter Binary Operator (+): ";
+    n3.display();
+
+    // Relational operator
+    if (n1 > n2)
+        cout << "\nFirst object has greater sum.";
+    else
+        cout << "\nSecond object has greater or equal sum.";
+
+    return 0;
+}
