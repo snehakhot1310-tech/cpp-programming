@@ -1,0 +1,41 @@
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    char name[50];
+    int rollno;
+
+    // Writing data to file
+    ofstream fout("student.txt");
+
+    cout << "Enter student name: ";
+    cin >> name;
+
+    cout << "Enter roll number: ";
+    cin >> rollno;
+
+    fout << "Student Name: " << name << endl;
+    fout << "Roll Number: " << rollno << endl;
+
+    fout.close();
+
+    cout << "\nData written successfully!\n";
+
+    // Reading data from file
+    ifstream fin("student.txt");
+
+    char ch;
+    cout << "\nReading data from file:\n";
+
+    while (fin.get(ch))
+    {
+        cout << ch;
+    }
+
+    fin.close();
+
+    return 0;
+}
